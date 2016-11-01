@@ -30,10 +30,12 @@ def get(json):
     else:
         print('Formatted data')
 
-def post(data, feeds):
+def post(user, data, feeds):
     endpoint = 'http://localhost:3000/broadcasts'
+    username = user[0].split(':')[0]
+    password = user[0].split(':')[1]
     postdata = { 'broadcast[content]': data, 'feeds[Atom]': feeds[0], 'feeds[twitter]': feeds[1], 'feeds[RSS]': feeds[2], 'feeds[email]': feeds[3], 'feeds[facebook]': feeds[4] }
-    response = requests.post(endpoint, auth=('admin', 'taliesin'), params=postdata)
+    response = requests.post(endpoint, auth=(username, password), params=postdata)
     if(response.status_code == 200):
         print('Posted successfully')
     else:
@@ -41,11 +43,10 @@ def post(data, feeds):
 
 if __name__ == "__main__":
     args = docopt(__doc__)
-    print(args)
     if args['--help']:
         print(args.help_message)
         sys.exit(0)
     if args['--post']:
-        post(args['--post'], [ args['--Atom'], args['--twitter'], args['--RSS'], args['--email'], args['--facebook'] ])
+        post(args['--user'], args['--post'], [ args['--Atom'], args['--twitter'], args['--RSS'], args['--email'], args['--facebook'] ])
     else:
         get(args['--json'])
