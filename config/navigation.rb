@@ -47,7 +47,7 @@ SimpleNavigation::Configuration.run do |navigation|
     #           :method - Specifies the http-method for the generated link - default is :get.
     #           :highlights_on - if autohighlighting is turned off and/or you want to explicitly specify
     #                            when the item should be highlighted, you can set a regexp which is matched
-    #                            against the current URI.  You may also use a proc, or the symbol <tt>:subpath</tt>. 
+    #                            against the current URI.  You may also use a proc, or the symbol <tt>:subpath</tt>.
     #
     if session[:user_id]
       show_user = user_url(id: session[:user_id])
@@ -56,7 +56,6 @@ SimpleNavigation::Configuration.run do |navigation|
     end
     # Highlight the home tab either if the path is / or /home
     primary.item :home, 'Home', '/home', highlights_on: /(^\/$)|(^\/home)/
-    primary.item :jobs, 'Jobs', '/jobs'
     primary.item :profile, 'Profile', show_user,
                  highlights_on: /\/users\/\d/,
                  if: Proc.new { current_user }
