@@ -1,25 +1,25 @@
 class ApplicationController < ActionController::Base
   helper_method :is_admin?, :logged_in?, :current_user
-    
+
   # The current trend is to use HTTPS for all web app
   # communication. Note that we have switch on SSL and
   # specified its port in config/environments/development.rb
   #force_ssl
-    
+
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
-    
+  protect_from_forgery with: :null_session
+
   before_action :set_locale
   before_action :login_required
   after_action :store_location, only: [:index, :new, :show, :edit, :search]
-    
+
   protected
-    
+
   def login_required
     logged_in? || access_denied
   end
-    
+
   # To support RESTful authentication we need to treat web
   # browser access differently
   # to web service B2B style interaction:
@@ -57,30 +57,30 @@ class ApplicationController < ActionController::Base
       end
     end
   end
-    
-    
+
+
   def login_from_session
     self.current_user =
       UserDetail.find_by_id(session[:user_id]) if session[:user_id]
   end
-    
+
   def login_from_basic_auth
     authenticate_with_http_basic do |login, password|
       self.current_user =
         UserDetail.authenticate(login, password)
     end
   end
-    
+
   def logged_in?
     current_user ? true : false
   end
-    
+
   # Accesses the current user from either the session or via a
   # db lookup as part of basic authentication.
   def current_user
     login_from_session || login_from_basic_auth
   end
-    
+
   # Store the given user id in the session. We cheat a bit and
   # do this even
   # for basic authentication. If the session cookie is handled
@@ -90,16 +90,16 @@ class ApplicationController < ActionController::Base
   def current_user=(new_user)
     session[:user_id] = new_user ? new_user.id : nil
   end
-    
+
   # Some very lightweight authorisation checking
   def is_admin?
     current_user ? current_user.login == 'admin' : false
   end
-    
+
   def admin_required
     is_admin? || admin_denied
   end
-    
+
   def admin_denied
     respond_to do |format|
       format.html do
@@ -108,7 +108,7 @@ class ApplicationController < ActionController::Base
       end
     end
   end
-    
+
   # Store the URI of the current request in the session.
   #
   # We can return to this location by calling #redirect_back_or_default.
