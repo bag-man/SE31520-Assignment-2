@@ -19,16 +19,19 @@ Options:
 from docopt import docopt
 import requests
 import sys
+import json
 
-def get(json):
+def get(raw):
     endpoint = 'http://localhost:3000/broadcasts.json'
     response = requests.get(endpoint, auth=('admin', 'taliesin'))
     data = response.json()
 
-    if json:
-        print(data)
+    if raw:
+        print(json.dumps(data, indent=4, sort_keys=True))
     else:
-        print('Formatted data')
+        print('UserID\t Post')
+        for post in data:
+            print(str(post['user_id']) + '\t ' + post['content'])
 
 def post(user, data, feeds):
     endpoint = 'http://localhost:3000/broadcasts'
