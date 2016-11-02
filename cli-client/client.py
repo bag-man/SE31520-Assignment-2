@@ -24,8 +24,13 @@ import json
 
 def get(raw):
     endpoint = 'http://localhost:3000/broadcasts.json'
-    response = requests.get(endpoint, auth=('admin', 'taliesin'))
-    data = response.json()
+
+    try:
+        response = requests.get(endpoint, auth=('admin', 'taliesin'))
+        data = response.json()
+    except requests.exceptions.RequestException as e:
+        print(e)
+        sys.exit(1)
 
     if raw:
         print(json.dumps(data, indent=4, sort_keys=True))
@@ -49,7 +54,11 @@ def post(user, data, feeds):
                , 'feeds[facebook]': feeds[4]
                }
 
-    response = requests.post(endpoint, auth=(username, password), params=postdata)
+    try:
+        response = requests.post(endpoint, auth=(username, password), params=postdata)
+    except requests.exceptions.RequestException as e:
+        print(e)
+        sys.exit(1)
 
     if(response.status_code == 200):
         print('Posted successfully')
