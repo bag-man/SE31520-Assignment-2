@@ -61,8 +61,9 @@ def post(user, data, feeds):
         print(e)
         sys.exit(1)
 
-    if(response.status_code == 200):
+    if(response.status_code == 201):
         print('Posted successfully')
+        print(json.dumps(response.json(), indent=4, sort_keys=True))
     else:
         print('Post failed with status code: ' + str(response.status_code))
 
