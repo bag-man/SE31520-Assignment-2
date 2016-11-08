@@ -23,7 +23,7 @@ import json
 
 
 def get(raw):
-    endpoint = 'http://localhost:3000/broadcasts.json'
+    endpoint = 'http://localhost:3000/api/broadcasts.json'
 
     try:
         response = requests.get(endpoint, auth=('admin', 'taliesin'))
@@ -41,7 +41,8 @@ def get(raw):
 
 
 def post(user, data, feeds):
-    endpoint = 'http://localhost:3000/broadcasts'
+    endpoint = 'http://localhost:3000/api/broadcasts.json'
+    headers = { 'Content-Type': 'application/json' }
 
     username = user[0].split(':')[0]
     password = user[0].split(':')[1]
