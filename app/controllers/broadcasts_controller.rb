@@ -61,13 +61,6 @@ class BroadcastsController < ApplicationController
         end
         if no_errors
           format.html { redirect_to(broadcasts_url(page: @current_page)) }
-
-          puts("Sending action cable broadcast")
-          BroadcastChannel.broadcast_to(
-            current_user,
-            title: 'New things!',
-            body: 'All the news fit to print'
-          )
         else
           format.html { render action: 'new' }
         end

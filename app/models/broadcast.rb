@@ -7,6 +7,12 @@ class Broadcast < ApplicationRecord
   belongs_to :user
   has_and_belongs_to_many :feeds
 
+  after_commit :doShit
+
+  def doShit
+    BroadcastRelayJob.perform_later(self)
+  end
+
   def to_s
     result = "id: " + id.to_s + " content: " + content
     if user

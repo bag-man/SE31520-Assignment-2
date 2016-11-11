@@ -8,14 +8,9 @@ class Api::BroadcastsController < Api::ApplicationController
   # This is a very simple form of authorisation
   before_action :admin_required
 
-  # Default number of entries per page
-  PER_PAGE = 12
-
   # GET /broadcasts.json
   def index
-    @broadcasts = Broadcast.paginate(page: params[:page],
-                                     per_page: params[:per_page])
-                           .order('created_at DESC')
+    @broadcasts = Broadcast.order('created_at DESC')
   end
 
   # POST /broadcasts.json
