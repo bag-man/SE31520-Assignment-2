@@ -100,6 +100,7 @@ GEM
       mime-types
       mimemagic (~> 0.3.0)
     pkg-config (1.1.7)
+    puma (3.6.0)
     rack (2.0.1)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -187,6 +188,7 @@ DEPENDENCIES
   listen (~> 3.0.5)
   oauth
   paperclip
+  puma
   rails (~> 5.0.0)
   sass-rails (~> 5.0)
   simple-navigation
@@ -200,4 +202,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   1.13.1
+   1.13.6
