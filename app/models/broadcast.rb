@@ -7,9 +7,10 @@ class Broadcast < ApplicationRecord
   belongs_to :user
   has_and_belongs_to_many :feeds
 
-  after_commit :doShit
+  after_commit :runJob
 
-  def doShit
+  def runJob
+    puts('2222222222222222')
     BroadcastRelayJob.perform_later(self)
   end
 
