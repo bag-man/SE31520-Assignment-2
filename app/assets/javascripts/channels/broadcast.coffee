@@ -1,5 +1,6 @@
 App.cable.subscriptions.create { channel: "BroadcastChannel" },
   received: (data) ->
+    console.log '!!!!!!!!!!!!!!'
     @appendLine(data)
  
   appendLine: (data) ->

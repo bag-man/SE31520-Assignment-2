@@ -10,7 +10,6 @@ class Broadcast < ApplicationRecord
   after_commit :runJob
 
   def runJob
-    puts('2222222222222222')
     BroadcastRelayJob.perform_later(self)
   end
 
