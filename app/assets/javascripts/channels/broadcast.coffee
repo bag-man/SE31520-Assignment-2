@@ -1,6 +1,5 @@
 App.cable.subscriptions.create { channel: "BroadcastChannel" },
   received: (data) ->
-    console.log '!!!!!!!!!!!!!!'
     @appendLine(data)
  
   appendLine: (data) ->
@@ -10,6 +9,6 @@ App.cable.subscriptions.create { channel: "BroadcastChannel" },
   createLine: (data) ->
     """
     <article class="chat-line">
-      <span class="body">#{data["body"]}</span>
+      <span class="body">#{data.broadcast["content"]}</span>
     </article>
     """
