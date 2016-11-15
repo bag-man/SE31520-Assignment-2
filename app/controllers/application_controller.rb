@@ -13,11 +13,16 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
   before_action :login_required
   after_action :store_location, only: [:index, :new, :show, :edit, :search]
+  before_filter :update
 
   protected
 
   def login_required
     logged_in? || access_denied
+  end
+
+  def update
+    @UpdateFeed = Broadcast.last(20).reverse
   end
 
   # To support RESTful authentication we need to treat web

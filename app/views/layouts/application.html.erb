@@ -3,7 +3,7 @@
 <head>
   <title>Csa</title>
     <%= csrf_meta_tags %>
-    
+
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
@@ -20,7 +20,7 @@
           <span class="flash_message"><%= value %></span>
         </span>
   <% end %>
-  
+
   <!-- Blank URI so browser will request current page when form submitted -->
   <%= form_tag '', method: 'GET', class: 'locale' do %>
       <%= select_tag 'locale', options_for_select(LANGUAGES, I18n.locale), \
@@ -34,6 +34,7 @@
 </div>
 
 <div id="footer">
+  <div class=actioncable> <%= render @UpdateFeed %></div>
 </div>
 
 </body>
