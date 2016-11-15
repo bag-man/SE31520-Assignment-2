@@ -1,5 +1,6 @@
 UserDetail.delete_all
 User.delete_all
+Broadcast.delete_all
 
 User.transaction do
   1..40.times do |i|
@@ -29,4 +30,10 @@ User.transaction do
   Feed.create!(name: 'email')
   Feed.create!(name: 'RSS')
   Feed.create!(name: 'atom')
+  Feed.create!(name: 'CSA')
+
+  1..40.times do |i|
+    Broadcast.create(content: "TestContent#{i}",
+                     user: user)
+  end
 end
