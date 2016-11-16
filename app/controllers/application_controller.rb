@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
   before_action :login_required
   after_action :store_location, only: [:index, :new, :show, :edit, :search]
-  before_filter :update
+  before_filter :showFeed
 
   protected
 
@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
     logged_in? || access_denied
   end
 
-  def update
+  def showFeed
     @UpdateFeed = Broadcast.last(20).reverse
   end
 
