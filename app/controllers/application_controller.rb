@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
   before_action :login_required
   after_action :store_location, only: [:index, :new, :show, :edit, :search]
-  before_filter :showFeed
+  before_action :showFeed
 
   protected
 
