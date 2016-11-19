@@ -12,7 +12,6 @@ After do |scenario|
   DatabaseCleaner.clean
 end
 
-
 Given(/^that user "([^"]*)" with password "([^"]*)" has logged in$/) do |arg1, arg2|
   visit("/session/new")
   within('.session-form') do
@@ -20,23 +19,23 @@ Given(/^that user "([^"]*)" with password "([^"]*)" has logged in$/) do |arg1, a
     fill_in 'password', with: arg2
     click_button 'Login'
   end
-  puts(find('.flash_message').text)
 end
 
 When(/^the admin user broadcasts "([^"]*)" to the notification feed$/) do |arg1|
   visit("/broadcasts/new")
   within('.broadcast-form') do
     fill_in 'broadcast_content', with: arg1
+    uncheck 'feeds[twitter]'
+    uncheck 'feeds[email]'
     click_button 'Broadcast'
   end
 end
 
 Then(/^the current page should contain the text: "([^"]*)"$/) do |arg1|
-  puts(find('.flash_message').text)
-  pending
+  expect(find('.flash_message').text).to eq(arg1)
 end
 
 Then(/^the current page should show the text "([^"]*)" in the notification feed$/) do |arg1|
-  # pending
+  expect(find('.actioncable').text.include? arg1).to eq(true)
 end
 
