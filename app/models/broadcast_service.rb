@@ -20,6 +20,7 @@ class BroadcastService
         when "facebook"
         when "RSS"
         when "atom"
+        when "CSA"
       end
     end
     result
