@@ -2,7 +2,7 @@
 client.py
 Usage:
   client.py (--user=<USER:PASS>) [-j]
-  client.py (--user=<USER:PASS>) [(--post=<POST_DATA> [-eARft])]
+  client.py (--user=<USER:PASS>) [(--post=<POST_DATA> [-eACRft])]
   client.py --help
 Options:
   -h --help                        Display this help message
@@ -12,6 +12,7 @@ Options:
   -R --RSS                         Use RSS feed
   -f --facebook                    Use facebook feed
   -t --twitter                     Use twitter feed
+  -C --CSA                         Use CSA feed
   -p CONTENT,   --post  CONTENT    Make a new broadcast
   -u USER:PASS, --user  USER:PASS  Specify a username and password
 """
@@ -22,11 +23,14 @@ import sys
 import json
 
 
-def get(raw):
+def get(user, raw):
     endpoint = 'http://localhost:3000/api/broadcasts.json'
 
+    username = user[0].split(':')[0]
+    password = user[0].split(':')[1]
+
     try:
-        response = requests.get(endpoint, auth=('admin', 'taliesin'))
+        response = requests.get(endpoint, auth=(username, password))
         data = response.json()
     except requests.exceptions.RequestException as e:
         print(e)
@@ -53,6 +57,7 @@ def post(user, data, feeds):
                , 'feeds[RSS]': feeds[2]
                , 'feeds[email]': feeds[3]
                , 'feeds[facebook]': feeds[4]
+               , 'feeds[CSA]': feeds[5]
                }
 
     try:
@@ -80,7 +85,8 @@ if __name__ == "__main__":
               , args['--RSS']
               , args['--email']
               , args['--facebook']
+              , args['--CSA']
               ]
             )
     else:
-        get(args['--json'])
+        get(args['--user'], args['--json'])
