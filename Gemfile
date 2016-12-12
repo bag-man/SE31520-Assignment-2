@@ -65,3 +65,10 @@ group :test do
   gem 'rspec-rails'
   gem 'selenium-webdriver'
 end
+
+group :development, :test do
+  gem 'sqlite3'
+end
+group :production do
+  gem 'pg'
+end
