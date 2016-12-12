@@ -61,6 +61,7 @@ group :test do
   gem 'factory_girl'
   gem 'rspec-rails'
   gem 'selenium-webdriver'
+  gem 'rake'
 end
 
 group :development, :test do

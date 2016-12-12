@@ -5675,3 +5675,164 @@ Completed 200 OK in 71ms (Views: 62.1ms | ActiveRecord: 3.3ms)
   [1m[35m (8.5ms)[0m  [1m[31mDELETE FROM "ar_internal_metadata";[0m
   [1m[35m (0.2ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
   [1m[35m (0.2ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'ar_internal_metadata';[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "admin@aber.ac.uk"], ["LIMIT", 1]]
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "users" ("surname", "firstname", "phone", "grad_year", "email", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["surname", "Admin"], ["firstname", "Admin"], ["phone", "07000 000000"], ["grad_year", 2016], ["email", "admin@aber.ac.uk"], ["created_at", 2016-12-12 11:26:25 UTC], ["updated_at", 2016-12-12 11:26:25 UTC]]
+  [1m[35m (26.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUserDetail Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "user_details" WHERE "user_details"."login" = ? LIMIT ?[0m  [["login", "admin"], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "user_details" ("login", "salt", "crypted_password", "user_id") VALUES (?, ?, ?, ?)[0m  [["login", "admin"], ["salt", "484370800.9015531778719604"], ["crypted_password", "75cc6afdc8c8ca2fcc14839b168e35213bf17b5be2825d71d587d301ceef28b9"], ["user_id", 1]]
+  [1m[35m (8.0ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/session/new" for 127.0.0.1 at 2016-12-12 11:26:25 +0000
+Processing by SessionsController#new as HTML
+  [1m[36mBroadcast Load (0.2ms)[0m  [1m[34mSELECT  "broadcasts".* FROM "broadcasts" ORDER BY "broadcasts"."id" DESC LIMIT ?[0m  [["LIMIT", 20]]
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (7.1ms)
+  Rendered sessions/_login.html.erb (1.1ms)
+  Rendered collection of templates [0 times] (0.0ms)
+Completed 200 OK in 1243ms (Views: 1215.8ms | ActiveRecord: 0.9ms)
+Started POST "/session" for 127.0.0.1 at 2016-12-12 11:26:26 +0000
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "login"=>"admin", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[36mBroadcast Load (0.3ms)[0m  [1m[34mSELECT  "broadcasts".* FROM "broadcasts" ORDER BY "broadcasts"."id" DESC LIMIT ?[0m  [["LIMIT", 20]]
+  [1m[36mUserDetail Load (0.3ms)[0m  [1m[34mSELECT  "user_details".* FROM "user_details" WHERE "user_details"."login" = ? LIMIT ?[0m  [["login", "admin"], ["LIMIT", 1]]
+Redirected to http://www.example.com/home
+Completed 302 Found in 6ms (ActiveRecord: 0.5ms)
+Started GET "/home" for 127.0.0.1 at 2016-12-12 11:26:26 +0000
+Processing by HomeController#index as HTML
+  [1m[36mBroadcast Load (0.2ms)[0m  [1m[34mSELECT  "broadcasts".* FROM "broadcasts" ORDER BY "broadcasts"."id" DESC LIMIT ?[0m  [["LIMIT", 20]]
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (0.5ms)
+  [1m[36mUserDetail Load (0.3ms)[0m  [1m[34mSELECT  "user_details".* FROM "user_details" WHERE "user_details"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered sessions/_login.html.erb (2.8ms)
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "user_details".* FROM "user_details" WHERE "user_details"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "user_details".* FROM "user_details" WHERE "user_details"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "user_details".* FROM "user_details" WHERE "user_details"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "user_details".* FROM "user_details" WHERE "user_details"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "user_details".* FROM "user_details" WHERE "user_details"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered collection of templates [0 times] (0.0ms)
+Completed 200 OK in 16ms (Views: 13.0ms | ActiveRecord: 0.6ms)
+Started GET "/broadcasts/new" for 127.0.0.1 at 2016-12-12 11:26:26 +0000
+Processing by BroadcastsController#new as HTML
+  [1m[36mUserDetail Load (0.2ms)[0m  [1m[34mSELECT  "user_details".* FROM "user_details" WHERE "user_details"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBroadcast Load (0.2ms)[0m  [1m[34mSELECT  "broadcasts".* FROM "broadcasts" ORDER BY "broadcasts"."id" DESC LIMIT ?[0m  [["LIMIT", 20]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "user_details".* FROM "user_details" WHERE "user_details"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "user_details".* FROM "user_details" WHERE "user_details"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering broadcasts/new.html.erb within layouts/application
+  Rendered broadcasts/new.html.erb within layouts/application (13.3ms)
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "user_details".* FROM "user_details" WHERE "user_details"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered sessions/_login.html.erb (1.8ms)
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "user_details".* FROM "user_details" WHERE "user_details"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "user_details".* FROM "user_details" WHERE "user_details"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "user_details".* FROM "user_details" WHERE "user_details"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "user_details".* FROM "user_details" WHERE "user_details"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "user_details".* FROM "user_details" WHERE "user_details"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered collection of templates [0 times] (0.0ms)
+Completed 200 OK in 35ms (Views: 25.3ms | ActiveRecord: 0.6ms)
+Started POST "/broadcasts" for 127.0.0.1 at 2016-12-12 11:26:26 +0000
+Processing by BroadcastsController#create as HTML
+  Parameters: {"utf8"=>"✓", "page"=>"1", "broadcast"=>{"content"=>"hello world"}, "shorten_url"=>"", "feeds"=>{"alumni_email"=>"cs-alumni", "facebook"=>"1", "RSS"=>"1", "atom"=>"1", "csa"=>"1"}, "commit"=>"Broadcast"}
+  [1m[36mUserDetail Load (0.2ms)[0m  [1m[34mSELECT  "user_details".* FROM "user_details" WHERE "user_details"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBroadcast Load (0.2ms)[0m  [1m[34mSELECT  "broadcasts".* FROM "broadcasts" ORDER BY "broadcasts"."id" DESC LIMIT ?[0m  [["LIMIT", 20]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "user_details".* FROM "user_details" WHERE "user_details"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "user_details".* FROM "user_details" WHERE "user_details"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "user_details".* FROM "user_details" WHERE "user_details"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "broadcasts" ("content", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["content", "hello world"], ["user_id", 1], ["created_at", 2016-12-12 11:26:26 UTC], ["updated_at", 2016-12-12 11:26:26 UTC]]
+  [1m[35m (35.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mBroadcast Load (0.8ms)[0m  [1m[34mSELECT  "broadcasts".* FROM "broadcasts" WHERE "broadcasts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[ActiveJob] [BroadcastRelayJob] [5531b9f1-376d-4b0c-a161-b69bfd093cd4] Performing BroadcastRelayJob from Async(default) with arguments: #<GlobalID:0x007f169c028028 @uri=#<URI::GID gid://csa/Broadcast/1>>
+[ActiveJob] [BroadcastRelayJob] [5531b9f1-376d-4b0c-a161-b69bfd093cd4]   [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[ActiveJob] [BroadcastRelayJob] [5531b9f1-376d-4b0c-a161-b69bfd093cd4]   Rendered broadcasts/_broadcast.html.erb (3.7ms)
+[ActiveJob] [BroadcastRelayJob] [5531b9f1-376d-4b0c-a161-b69bfd093cd4] [ActionCable] Broadcasting to BroadcastChannel: {:broadcast=>"<p>\n  hello world\n  admin@aber.ac.uk\n  2016-12-12 11:26:26 UTC\n</p>\n"}
+[ActiveJob] [BroadcastRelayJob] [5531b9f1-376d-4b0c-a161-b69bfd093cd4] Performed BroadcastRelayJob from Async(default) in 19.66ms
+[ActiveJob] Enqueued BroadcastRelayJob (Job ID: 5531b9f1-376d-4b0c-a161-b69bfd093cd4) to Async(default) with arguments: #<GlobalID:0x0000000a02a6c0 @uri=#<URI::GID gid://csa/Broadcast/1>>
+Redirected to http://www.example.com/broadcasts?page=1
+Completed 302 Found in 118ms (ActiveRecord: 36.6ms)
+Started GET "/broadcasts?page=1" for 127.0.0.1 at 2016-12-12 11:26:26 +0000
+Processing by BroadcastsController#index as HTML
+  Parameters: {"page"=>"1"}
+  [1m[36mUserDetail Load (0.3ms)[0m  [1m[34mSELECT  "user_details".* FROM "user_details" WHERE "user_details"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBroadcast Load (0.2ms)[0m  [1m[34mSELECT  "broadcasts".* FROM "broadcasts" ORDER BY "broadcasts"."id" DESC LIMIT ?[0m  [["LIMIT", 20]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "user_details".* FROM "user_details" WHERE "user_details"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "user_details".* FROM "user_details" WHERE "user_details"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering broadcasts/index.html.erb within layouts/application
+  [1m[36mBroadcast Load (0.4ms)[0m  [1m[34mSELECT  "broadcasts".* FROM "broadcasts" ORDER BY created_at DESC LIMIT ? OFFSET ?[0m  [["LIMIT", 8], ["OFFSET", 0]]
+  [1m[36mFeed Load (0.3ms)[0m  [1m[34mSELECT "feeds".* FROM "feeds" INNER JOIN "broadcasts_feeds" ON "feeds"."id" = "broadcasts_feeds"."feed_id" WHERE "broadcasts_feeds"."broadcast_id" = ?[0m  [["broadcast_id", 1]]
+  [1m[36mBroadcast Load (0.3ms)[0m  [1m[34mSELECT  "broadcasts".* FROM "broadcasts" ORDER BY created_at DESC LIMIT ? OFFSET ?[0m  [["LIMIT", 1], ["OFFSET", 0]]
+  Rendered broadcasts/index.html.erb within layouts/application (38.6ms)
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "user_details".* FROM "user_details" WHERE "user_details"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered sessions/_login.html.erb (1.8ms)
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "user_details".* FROM "user_details" WHERE "user_details"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "user_details".* FROM "user_details" WHERE "user_details"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "user_details".* FROM "user_details" WHERE "user_details"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "user_details".* FROM "user_details" WHERE "user_details"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "user_details".* FROM "user_details" WHERE "user_details"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered collection of broadcasts/_broadcast.html.erb [1 times] (2.5ms)
+Completed 200 OK in 66ms (Views: 51.6ms | ActiveRecord: 2.9ms)
+  [1m[35m (11.8ms)[0m  [1m[31mDELETE FROM "broadcasts";[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (7.9ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'broadcasts';[0m
+  [1m[35m (8.5ms)[0m  [1m[31mDELETE FROM "broadcasts_feeds";[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'broadcasts_feeds';[0m
+  [1m[35m (8.1ms)[0m  [1m[31mDELETE FROM "feeds";[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'feeds';[0m
+  [1m[35m (7.9ms)[0m  [1m[31mDELETE FROM "images";[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'images';[0m
+  [1m[35m (7.7ms)[0m  [1m[31mDELETE FROM "user_details";[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (7.8ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'user_details';[0m
+  [1m[35m (7.9ms)[0m  [1m[31mDELETE FROM "users";[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (8.0ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'users';[0m
+  [1m[35m (7.2ms)[0m  [1m[31mDELETE FROM "ar_internal_metadata";[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'ar_internal_metadata';[0m
+  [1m[35m (16.3ms)[0m  [1m[31mDELETE FROM "broadcasts";[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'broadcasts';[0m
+  [1m[35m (19.5ms)[0m  [1m[31mDELETE FROM "broadcasts_feeds";[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'broadcasts_feeds';[0m
+  [1m[35m (9.7ms)[0m  [1m[31mDELETE FROM "feeds";[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'feeds';[0m
+  [1m[35m (4.7ms)[0m  [1m[31mDELETE FROM "images";[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'images';[0m
+  [1m[35m (9.1ms)[0m  [1m[31mDELETE FROM "user_details";[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'user_details';[0m
+  [1m[35m (9.0ms)[0m  [1m[31mDELETE FROM "users";[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'users';[0m
+  [1m[35m (7.9ms)[0m  [1m[31mDELETE FROM "ar_internal_metadata";[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'ar_internal_metadata';[0m
+  [1m[35m (8.0ms)[0m  [1m[31mDELETE FROM "broadcasts";[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'broadcasts';[0m
+  [1m[35m (14.3ms)[0m  [1m[31mDELETE FROM "broadcasts_feeds";[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'broadcasts_feeds';[0m
+  [1m[35m (26.5ms)[0m  [1m[31mDELETE FROM "feeds";[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'feeds';[0m
+  [1m[35m (10.2ms)[0m  [1m[31mDELETE FROM "images";[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'images';[0m
+  [1m[35m (7.3ms)[0m  [1m[31mDELETE FROM "user_details";[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'user_details';[0m
+  [1m[35m (10.2ms)[0m  [1m[31mDELETE FROM "users";[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'users';[0m
+  [1m[35m (4.7ms)[0m  [1m[31mDELETE FROM "ar_internal_metadata";[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'ar_internal_metadata';[0m
