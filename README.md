@@ -1,24 +1,7 @@
-# README
+# SE31520 Assignment 2
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[![Build Status](https://img.shields.io/travis/bag-man/SE31520-Assignment-2.svg?style=flat-square)](https://travis-ci.org/bag-man/SE31520-Assignment-2)
+[![Dependencies](https://img.shields.io/david/bag-man/SE31520-Assignment-2.svg?style=flat-square)](https://david-dm.org/bag-man/SE31520-Assignment-2)
+[![Code Climate](https://img.shields.io/codeclimate/github/bag-man/SE31520-Assignment-2.svg?style=flat-square)](https://codeclimate.com/github/bag-man/SE31520-Assignment-2)
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Admin login is `admin:admin`, you can view the site on Heroku: https://se31520-owg1.herokuapp.com/
