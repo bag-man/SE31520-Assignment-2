@@ -4,3 +4,5 @@
 [![Code Climate](https://img.shields.io/codeclimate/github/bag-man/SE31520-Assignment-2.svg?style=flat-square)](https://codeclimate.com/github/bag-man/SE31520-Assignment-2)
 
 Admin login is `admin:admin`, you can view the site on Heroku: https://se31520-owg1.herokuapp.com/
+
+You can find the writeup for this project and a short demo video of the work done in the `doc/` folder

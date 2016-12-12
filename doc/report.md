@@ -1,12 +1,10 @@
 # SE31520 Assignment 2
 
-## Cover Page
-Owen Garland - owg1@aber.ac.uk - 0.1
+Owen Garland - owg1@aber.ac.uk - Version 0.3
 ******
 
-
 ## Introduction
-This report details my progress with the Developing Internet-Based Applications CSA assignment. I will justify all of my design decisions as well as analysing how those decisions effected the project. 
+This report details my progress with the Developing Internet-Based Applications CSA assignment. I will justify all of my design decisions as well as analysing how those decisions effected the project. You can view the project, Heroku & TravisCI integration at https://github.com/bag-man/SE31520-Assignment-2.
 
 ## Architecture
 The design and architecture of this project really wasn't up to me, the project is a standard rails project which means it is structured exactly as rails projects are always structured. 
@@ -45,14 +43,15 @@ Feature tests are the opposite of this as they test a whole feature rather than 
 However I do not see cucumber tests as a valid substitute for unit tests at all. There were some unit tests given to us for the user class, however they didn't pass when they were given to us, nor were we instructed to fix them. 
 
 ## Screencast
+Please see demo.mp4 in this folder for the screencast that shows Cucumber tests passing, Heroku, TravisCI, and the use of the CLI client and ActionCable.
 
 ## Flair
 To add some flair to this project I have used version control to develop the application, this has allowed me to branch code off and look at different revisions for regressions. At one stage I had an issue caused by my naming a function `update`, which I was unaware was a reserved function in rails, this caused a whole host of errors. To fix this I did a git bisect across the project which essentially allowed me to do a binary search through all of the commits, until I reached the one that had introduced the regression. Ideally I would have had unit tests that I could have added to the git bisect, but these weren't included in the project.  However manually chekcing for the regression didn't take long and I had quickly narrowed down the area of code to look at for the bug.
 
 I also linked my Github repository to Heroku, and added TravisCI to the project as well. This means that when I commit code, TravisCI will run my cucumber tests, and if they pass Heroku will deploy the code so the latest stable version of the application can be seen online. I then added a couple of badges to the README.md of the project so that you can easily get to the TravisCI tests. I also added one to code climate which evaluates the state of the code in the repository. 
 
-[![Build Status](https://img.shields.io/travis/bag-man/SE31520-Assignment-2.svg?style=flat-square)](https://travis-ci.org/bag-man/SE31520-Assignment-2)
-[![Code Climate](https://img.shields.io/codeclimate/github/bag-man/SE31520-Assignment-2.svg?style=flat-square)](https://codeclimate.com/github/bag-man/SE31520-Assignment-2)
+[Build Status](https://travis-ci.org/bag-man/SE31520-Assignment-2)
+[Code Climate](https://codeclimate.com/github/bag-man/SE31520-Assignment-2)
 
 You can view the site on Heroku [here](https://se31520-owg1.herokuapp.com/), the login details are `admin:admin`.
 
